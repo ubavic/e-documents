@@ -1,0 +1,25 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: Checkout
+        uses: actions/checkout@v6
+      
+      - name: Save SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/key
+          sudo chmod 600 ~/.ssh/key
+          ssh-keyscan -H new.ubavic.rs >> ~/.ssh/known_hosts
+      
+      - name: Publish site
+        run: |
+          scp -i ~/.ssh/key -r img/* ${{ secrets.USER }}@new.ubavic.rs:/var/www/e-documents.ubavic.rs
+          scp -i ~/.ssh/key -r index.html ${{ secrets.USER }}@new.ubavic.rs:/var/www/e-documents.ubavic.rs
