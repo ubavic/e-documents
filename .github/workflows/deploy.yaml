@@ -21,5 +21,5 @@ jobs:
       
       - name: Publish site
         run: |
-          scp -i ~/.ssh/key -r img/* ${{ secrets.USER }}@new.ubavic.rs:/var/www/e-documents.ubavic.rs
-          scp -i ~/.ssh/key -r index.html ${{ secrets.USER }}@new.ubavic.rs:/var/www/e-documents.ubavic.rs
+          rm -Rf .github .gitignore .git
+          scp -i ~/.ssh/key -r * ${{ secrets.USER }}@new.ubavic.rs:/var/www/e-documents.ubavic.rs/
