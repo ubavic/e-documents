@@ -213,6 +213,7 @@
                 <option value="login-euprava-firefox">se ulogujem na eUpravu koristeći Firefox</option>
                 <option value="login-euprava-chrome">se ulogujem na eUpravu koristeći Chrome</option>
                 <option value="login-eporezi">se ulogujem na ePoreze</option>
+                <option value="login-croso-firefox">se ulogujem na CROSO koristeći Firefox</option>
                 <option value="sign-pdf">potpišem PDF</option>
                 <option value="install-bas-celik">instaliram Baš Čelik</option>
             </select>
@@ -505,7 +506,8 @@
                                 trajnoj lokaciji.
                             </li>
                             <li>Ako koristite sertifikat koji su izdali Pošta, Halcom
-                                ili E-Smart Systems, pročitajte tehničku dokumentaciju tih sertifikacionih tela da biste se informisali kako da instalirate PKCS#11 modul.</li>
+                                ili E-Smart Systems, pročitajte tehničku dokumentaciju tih sertifikacionih tela da biste
+                                se informisali kako da instalirate PKCS#11 modul.</li>
                         </ul>
                     </li>
                     <li>
@@ -1041,7 +1043,8 @@
                                 trajnoj lokaciji.
                             </li>
                             <li>Ako koristite sertifikat koji su izdali Pošta, Halcom
-                                ili E-Smart Systems, pročitajte tehničku dokumentaciju tih sertifikacionih tela da biste se informisali kako da instalirate PKCS#11 modul.</li>
+                                ili E-Smart Systems, pročitajte tehničku dokumentaciju tih sertifikacionih tela da biste
+                                se informisali kako da instalirate PKCS#11 modul.</li>
                         </ul>
                     </li>
                     <li>
@@ -1484,6 +1487,70 @@
             </section>
         </article>
 
+        <!--No OS -->
+
+        <article id="login-croso-firefox-noos">
+            <section class="prerequisites">
+                <header>Preduslovi</header>
+                <ol>
+                    <li>
+                        Da biste mogli da se ulogujete na Centralni registar obaveznog socijalnog osiguranja, potrebno
+                        je da posedujete kvalifikovani elektronski sertifikat koji je izdao jedno od sertifikacionih
+                        tela: Ministarstvo unutrašnjih poslova, Privredna komora Srbije, Pošta, Halcom ili E-Smart
+                        Systems.
+                        <ul>
+                            <li> Kvalifikovani elektronski sertifikat se može besplatno dobiti u lokalnom
+                                MUP-u podnošenjem zahteva. Kompletan proces je opisan na
+                                <a href="https://ca.mup.gov.rs/ca/ca_cyr/start/kes/">sajtu MUP-a</a>.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>Uz svaki sertifikat se dobija PIN (najčešće četvorocifreni broj). Ovaj PIN morate znati da biste
+                        koristili sertifikat.</li>
+                    <li>Ovaj vodič prikazuje samo slučaj logovanja na CROSO pomoću sertifikata na ličnoj karti
+                        korišćenjem eUprave. Na sličan način se možete ulogovati i sa ConsentID aplikacijom.
+                    </li>
+                </ol>
+            </section>
+            <section class="installation">
+                <header>Instalacija</header>
+                <ol start="4">
+                    <li>
+                        U Firefox programu instalirajte PKCS#11 modul za ličnu kartu. Ovaj postupak je detaljno
+                        objašnjen u instalacionoj sekciji
+                        <a href="#" onclick="switchUsage('login-euprava-firefox')">uputstva</a> za logovanje na
+                        eUpravu pomoću Firefox-a. Ako ste se već prijavljivali na eUpravu uz pomoć kvalifikovanog
+                        sertifikata, nije potrebno da izvršavate instalacione korake.
+                    </li>
+                </ol>
+            </section>
+            <section class="usage">
+                <header>Upotreba</header>
+                <ol start="4">
+                    <li>Povežite čitač kartica za računar i ubacite ličnu kartu u čitač.</li>
+                    <li>
+                        U pretraživaču otvorite <a href="https://portal.croso.gov.rs/">portal.croso.gov.rs</a>. U donjem
+                        desnom uglu kliknite na dugme za pristup preko eid.go.rs
+                        <figure>
+                            <img src="./img/CROSO.png">
+                        </figure>
+                    </li>
+                    <li>
+                        Otvoriće vam se login stranica eUprave. Odaberite opciju za prijavu putem kvalifikovanog
+                        elektronskog sertifikata.
+                        <figure>
+                            <img src="./img/euprava.png">
+                        </figure>
+                        Kliknite na dugme <em>Prijavite se</em>. Pojaviće se polje za unos PIN-a.
+                        Nakon što upišete ispravan PIN, pojaviće se lista sa dva sertifikata, vi odaberite sertifikat
+                        označen sa <em>Auth</em>. Nakon izbora sertifikata, posle par sekundi bićete preusmereni na
+                        CROSO portal.
+                    </li>
+                </ol>
+            </section>
+        </article>
+
+
         <article id="none">
             Traženo uputstvo nije pronađeno. Pomozite u pisanju uputstva preko <a
                 href="https://github.com/ubavic/e-documents">Github-a</a>.
@@ -1543,13 +1610,19 @@
             a.style.display = "none";
         }
 
-        const article = document.getElementById(`${usage}-${os}`);
-        if (article == null) {
-            const article = document.getElementById(`none`);
+        let article = document.getElementById(`${usage}-${os}`);
+        if (article !== null) {
             article.style.display = "block";
-            return;
+            return
         }
 
+        article = document.getElementById(`${usage}-noos`);
+        if (article !== null) {
+            article.style.display = "block";
+            return
+        }
+
+        article = document.getElementById(`none`);
         article.style.display = "block";
     }
 
