@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --content-width: 62rem;
+  --border-radius: 3px;
+  --color-text: black;
+  --color-terminal: #333;
+  --color-background: #fbf9f1;
+}
+
+body {
+  font-family:
+    "Raleway", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-optical-sizing: auto;
+  margin: 3rem 1rem;
+  font-size: 1.2rem;
+  color: var(--color-text);
+}
+
+h1 {
+  text-align: center;
+  text-justify: distribute;
+}
+
+main {
+  max-width: var(--content-width);
+  margin: auto;
+  border-bottom: 1px solid var(--color-text);
+  padding: 2rem;
+  background-color: white;
+}
+
+a,
+a:visited {
+  color: #155fb3;
+}
+
+form {
+  margin: 3rem 0;
+}
+
+article {
+  display: none;
+}
+
+footer {
+  max-width: var(--content-width);
+  margin: auto;
+  font-size: 0.9rem;
+}
+
+ol {
+  padding-left: 2.5rem;
+}
+
+li {
+  margin-top: 1rem;
+  padding: 0.5rem;
+}
+
+li::marker {
+  font-size: 1.5rem;
+  color: #999;
+}
+
+code {
+  font-size: 1rem;
+}
+
+pre {
+  margin: 0.2rem 0;
+  padding: 0.2rem;
+  color: var(--color-background);
+  background-color: var(--color-terminal);
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  overflow-x: scroll;
+}
+
+img {
+  max-width: 100%;
+  margin: 1rem auto;
+  border: 1px solid var(--color-text);
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.row > p {
+  margin: 0;
+  flex-grow: 10;
+}
+
+#none {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+.installation {
+  background-color: #f1fbf3;
+}
+
+.prerequisites {
+  background-color: #fbf1f1;
+}
+
+.usage {
+  background-color: #f1f2fb;
+}
+
+section > header {
+  text-transform: uppercase;
+  color: #666;
+  padding: 0.5rem 1rem 0 1rem;
+}
+
+figure {
+  text-align: center;
+}
+
+figure {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+figure img {
+  max-width: 90%;
+  margin: 0;
+}
+
+li > figure:last-child {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    margin: 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  main {
+    padding: 0.5rem;
+  }
+
+  form {
+    margin: 1rem auto;
+  }
+
+  ol {
+    padding-left: 1.2rem;
+  }
+
+  li {
+    margin-left: 0;
+  }
+
+  li::marker {
+    font-size: 1rem;
+    color: #999;
+  }
+
+  figure {
+    margin: 1rem 0;
+  }
+
+  figure img {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    margin: 0;
+  }
+
+  main {
+    border: none;
+  }
+
+  footer {
+    padding: 0.5rem;
+  }
+}
