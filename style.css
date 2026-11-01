@@ -114,6 +114,10 @@ img {
   background-color: #f1f2fb;
 }
 
+.note {
+  background-color: #f7f1fb;
+}
+
 section > header {
   text-transform: uppercase;
   color: #666;
