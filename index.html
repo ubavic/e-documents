@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vodič za korišćenje elektronskih dokumenata</title>
     <link rel="canonical" href="https://e-documents.ubavic.rs/" />
-    <meta name="description" content="Vodič koji obuhvata najčešće upotrebe elektronskih dokumenta: lične karte, zdravstvene knjižice, saobraćajne dozvole. Sve upotrebe su opisane uz pomoć besplatnog softvera otvorenog koda." />
+    <meta name="description"
+        content="Vodič koji obuhvata najčešće upotrebe elektronskih dokumenta: lične karte, zdravstvene knjižice, saobraćajne dozvole. Sve upotrebe su opisane uz pomoć besplatnog softvera otvorenog koda." />
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -26,6 +27,7 @@
                 <option value="login-eporezi">se ulogujem na ePoreze</option>
                 <option value="login-croso-firefox">se ulogujem na CROSO koristeći Firefox</option>
                 <option value="sign-pdf">potpišem PDF</option>
+                <option value="sign-xml">potpišem XML</option>
                 <option value="install-bas-celik">instaliram Baš Čelik</option>
             </select>
             <label for="os"> na sistemu</label>
@@ -1076,6 +1078,106 @@
                         </figure>
                     </li>
                 </ol>
+            </section>
+        </article>
+
+        <article id="sign-xml-noos">
+            <section class="prerequisites">
+                <header>Preduslovi</header>
+                <ol>
+                    <li>
+                        Da biste mogli da potpišete XML, potrebno je da posedujete kvalifikovani elektronski sertifikat
+                        koji je izdao jedno od sertifikacionih tela: Ministarstvo unutrašnjih poslova, Privredna komora
+                        Srbije, Pošta, Halcom ili E-Smart Systems.
+                        <ul>
+                            <li> Kvalifikovani elektronski sertifikat se može besplatno dobiti u lokalnom
+                                MUP-u podnošenjem zahteva. Kompletan proces je opisan na
+                                <a href="https://ca.mup.gov.rs/ca/ca_cyr/start/kes/">sajtu MUP-a</a>.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>Uz svaki sertifikat se dobija PIN (najčešće četvorocifreni broj). Ovaj PIN morate znati da biste
+                        koristili sertifikat.</li>
+                </ol>
+            </section>
+            <section class="installation">
+                <header>Instalacija</header>
+                <ol start="3">
+                    <li>
+                        Instalirajte Baš Čelik prateći
+                        <a href="#" onclick="switchUsage('install-bas-celik')">uputstvo za instalaciju</a>.
+                    </li>
+                    <li>
+                        Preuzimanje PKCS#11 modula:
+                        <ul>
+                            <li>
+                                Ako koristite sertifikat koji je izdao MUP, tj. ako koristite ličnu kartu,
+                                preuzmite modul srb-id-pkcs11 za vaš operativni sistem sa <a
+                                    href="https://github.com/ubavic/srb-id-pkcs11/releases/latest">Releases</a>
+                                stranice. Preuzetu datoteku sačuvajte na
+                                trajnoj lokaciji.
+                            </li>
+                            <li>Ako koristite sertifikat koji su izdali Pošta, Halcom
+                                ili E-Smart Systems, pročitajte tehničku dokumentaciju tih sertifikacionih tela da biste
+                                se informisali kako da instalirate PKCS#11 modul. Ne podržavaju svi izdavači sve
+                                operativne sisteme.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Otvorite Baš Čelik. U desnom gornjem uglu prozora Baš Čelika, kliknite na dugme za podešavanja.
+                        U podešavanjima, otvorite sekciju <em>Opšte</em> i u padajućem meniju <em>Režim</em> odaberite
+                        <em>Potpisivanje XML-a</em>. U sekciji <em>PKCS#11</em>, za tip sertifikata koji ćete koristiti,
+                        popunite putanju do PKCS#11 modula. Neke od putanja se automatski popunjavaju pri prvoj
+                        aktivaciji. Ako sertifikate određenih tela ne koristite, odgovarajuće putanje možete obrisati.
+                    </li>
+                </ol>
+            </section>
+            <section class="usage">
+                <header>Upotreba</header>
+                <ol start="6">
+                    <li>
+                        Povežite čitač kartica za računar i ubacite ličnu kartu u čitač.
+                    </li>
+                    <li>
+                        Otvorite Baš Čelik. Prikazaće se čarobnjak za potisivanje XML dokumenata
+                        <figure>
+                            <img src="./img/xml-sign.png">
+                        </figure>
+                    </li>
+                    <li>
+                        Odaberite modul koji odgovara sertifikatu koji želite da koristite.
+                    </li>
+                    <li>
+                        Odaberite token (pametnu karticu) sa sertifikatom koji želite da korstitie.
+                    </li>
+                    <li>
+                        Unesite PIN vašeg tokena.
+                    </li>
+                    <li>
+                        Odaberite sertifikat sa kojim želite da potpišete dokument (ako vam je ponuđeno više).
+                        <ul>
+                            <li>
+                                Na ličnim kartama, postoji <em>Sign</em> i <em>Auth</em> sertifikat. Za potpisivanje
+                                koristite <em>Sign</em>.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>Sada možete odarati lokalnu XML datoteku za potpisivanje. U toku jedne sesije možete potpisati
+                        više XML
+                        dototeka, jednu po jednu.</li>
+                </ol>
+            </section>
+            <section class="note">
+                <header>Napomena</header>
+                <ul>
+                    <li>
+                        Baš Čelik uvek radi u jednom od režima. Ako želite da očitate elektronske
+                        dokumente (lična karta, zdravstvena knjižica, saobraćajna dozvola), kroz podešavanja Baš Čelika
+                        vratite režim na <em>Čitanje dokumenata</em>, i restartujte aplikaciju. Kada budete
+                        želeli da potpišete XML dokumenete, dovoljno je da promenite režim, sva ostala podešavanja
+                        (putanje do modula) biće sačuvana.
+                    </li>
+                </ul>
             </section>
         </article>
 
